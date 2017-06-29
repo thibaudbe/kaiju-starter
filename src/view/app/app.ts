@@ -72,7 +72,7 @@ function render({ props, state }: RenderParams<Props, State>): Node[] {
         }),
       ]),
       h('div', [
-        h('span', { onClick: () => console.log('ok') },` | counts = ${ String(state.count) }`)
+        h('span', ` | counts = ${ String(state.count) }`)
       ]),
     ]),
     h('div', child)
