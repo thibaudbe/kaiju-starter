@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "yarn run watch",
-    "watch": "webpack-dev-server node_modules/webpack/bin/webpack.js --watch --config build/watch.js"
+    "watch": "node_modules/webpack/bin/webpack.js --watch --config build/watch.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,7 +13,6 @@
     "abyssa": "8.0.5",
     "css-loader": "0.28.4",
     "extract-text-webpack-plugin": "2.1.2",
-    "html-webpack-plugin": "^2.29.0",
     "kaiju": "0.26.0",
     "less": "2.7.2",
     "less-loader": "4.0.4",
@@ -29,7 +28,6 @@
     "tslint-loader": "3.5.3",
     "tslint-microsoft-contrib": "5.0.0",
     "typescript": "2.4.1",
-    "webpack": "3.0.0",
-    "webpack-dev-server": "^2.5.0"
+    "webpack": "3.0.0"
   }
 }

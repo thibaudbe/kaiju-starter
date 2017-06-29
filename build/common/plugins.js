@@ -3,7 +3,6 @@ const Webpack = require('webpack')
 const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 
 module.exports = ({ filename, isProd }) => {
@@ -21,13 +20,7 @@ module.exports = ({ filename, isProd }) => {
     emitErrors  : isProd
   })
 
-  const HtmlWebpack = new HtmlWebpackPlugin({
-    title: 'Main App',
-    template: 'index.ejs',
-    filename: path.resolve(__dirname, '../../../server/public/index.html')
-  })
-
   return isProd
     ? [ extractCSS, styleLinter, uglifyJS ]
-    : [ extractCSS, styleLinter, HtmlWebpack ]
+    : [ extractCSS, styleLinter ]
 }

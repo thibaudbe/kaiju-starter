@@ -11,11 +11,6 @@ module.exports = {
 
   entry: ['./src/main.ts'],
 
-  devServer: {
-    contentBase: path.join(__dirname, '../../server/public/'),
-    port: 9000
-  },
-
   output: {
     path: output,
     filename: 'app.js'
