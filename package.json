@@ -1,0 +1,35 @@
+{
+  "name": "doe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "yarn run watch",
+    "watch": "webpack-dev-server node_modules/webpack/bin/webpack.js --watch --config build/watch.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "abyssa": "8.0.5",
+    "css-loader": "0.28.4",
+    "extract-text-webpack-plugin": "2.1.2",
+    "html-webpack-plugin": "^2.29.0",
+    "kaiju": "0.26.0",
+    "less": "2.7.2",
+    "less-loader": "4.0.4",
+    "node-sass": "4.5.3",
+    "sass-loader": "6.0.6",
+    "snabbdom": "0.6.7",
+    "space-lift": "0.3.0",
+    "style-loader": "0.18.2",
+    "stylelint": "7.12.0",
+    "stylelint-webpack-plugin": "0.8.0",
+    "ts-loader": "2.2.1",
+    "tslint": "4.5.1",
+    "tslint-loader": "3.5.3",
+    "tslint-microsoft-contrib": "5.0.0",
+    "typescript": "2.4.1",
+    "webpack": "3.0.0",
+    "webpack-dev-server": "^2.5.0"
+  }
+}
