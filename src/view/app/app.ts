@@ -4,7 +4,7 @@ import { h, Component, ConnectParams, RenderParams, Node, VNode } from 'kaiju'
 import { update } from 'space-lift'
 
 import { routes, RouteDef, Router, Route } from 'router'
-import createAppStore, { AppStore } from 'store/appStore'
+import appStore, { incrementCounter } from 'store/appStore'
 import Link from 'widget/link'
 import Index from 'view/index'
 import User from 'view/user'
@@ -13,7 +13,7 @@ import NotFound from 'view/app/routeNotFound'
 
 export default function route() {
   return RouteDef('', {}, {
-    enter: router => (route, child) => app({ appStore: createAppStore(), child, router, route }),
+    enter: router => (route, child) => app({ child, router, route }),
     children: {
       index: Index(),
       user: User(),
@@ -27,7 +27,6 @@ function app(props: Props) {
 }
 
 type Props = {
-  appStore: AppStore
   router: Router
   route: Route<{}>
   child: VNode
@@ -42,10 +41,11 @@ function initState() {
 }
 
 
-function connect({ on, props }: ConnectParams<Props, State>) {
-  const store = props().appStore
+function connect({ on }: ConnectParams<Props, State>) {
 
-  on(store.state, (state, appState) => {
+  on(incrementCounter, () => appStore.send(incrementCounter()))
+
+  on(appStore.state, (state, appState) => {
     const { count } = appState
     return update(state, { count })
   })
@@ -56,7 +56,7 @@ function render({ props, state }: RenderParams<Props, State>): Node[] {
 
   return [
     h('header', [
-      h('div', [
+      h('div', { class: { links: true }}, [
         Link({
           router,
           route: routes.index,
@@ -72,7 +72,10 @@ function render({ props, state }: RenderParams<Props, State>): Node[] {
         }),
       ]),
       h('div', [
-        h('span', ` | counts = ${ String(state.count) }`)
+        h('button', {
+          events: { mousedown: incrementCounter }
+        }, 'increment'),
+        h('span', `counts = ${ String(state.count) }`),
       ]),
     ]),
     h('div', child)

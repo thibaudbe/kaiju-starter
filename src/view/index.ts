@@ -5,7 +5,12 @@ import { RouteDef } from 'router'
 
 export default function route() {
   return RouteDef('', {}, {
-    enter: () => () => h('h1', 'Index'),
+    enter: () => () => {
+      return h('div', [
+        h('h1', 'Index'),
+        h('span', 'Index Page')
+      ])
+    },
     children: {}
   })
 }

@@ -15,13 +15,11 @@ const initState: State = {
 
 export type AppStore = StoreType<State>
 
-export default function() {
+export default Store(initState, on => {
 
-  return Store(initState, on => {
-    on(incrementCounter, state => {
-      const count = state.count
-      return update(state, { count: count + 1 })
-    })
+  on(incrementCounter, state => {
+    const count = state.count
+    return update(state, { count: count + 1 })
+  })
 
-  }, { name: 'appStore' })
-}
+}, { name: 'appStore' })

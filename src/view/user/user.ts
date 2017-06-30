@@ -2,7 +2,6 @@ require('./user.less')
 import { h, Component, ConnectParams, RenderParams, VNode } from 'kaiju'
 import { RouteDef, Router, Route } from 'router'
 import appStore, { incrementCounter } from 'store/appStore'
-// import { update } from 'space-lift'
 
 type Params = { id: string }
 
@@ -22,34 +21,25 @@ export default function route() {
 }
 
 function user(props: Props) {
-  return Component<Props, State>({ name: 'user', props, initState, connect, render })
+  return Component<Props, {}>({ name: 'user', props, initState, connect, render })
 }
 
-interface State {
-  count: number
+function initState() {
+  return {}
 }
 
-function initState(): State {
-  return {
-    count: undefined!
-  }
+function connect({ on }: ConnectParams<Props, {}>) {
+  on(incrementCounter, () => appStore.send(incrementCounter()))
 }
 
-function connect({ on, msg }: ConnectParams<Props, State>) {
-
-  on(msg.listen(incrementCounter), _ => appStore().send(incrementCounter()))
-}
-
-function render({}: RenderParams<Props, State>): VNode {
+function render({}: RenderParams<Props, {}>): VNode {
 
   return h('div', [
     h('h1', 'User'),
-    h('p', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'),
-    // Button({
-    //   className: styles.incrementButton,
-    //   label: 'increment',
-    //   events: { mousedown: incrementCounter }
-    // }),
+    h('button', {
+      events: { mousedown: incrementCounter }
+    }, 'increment'),
+    h('span', 'User page'),
   ])
 
 }
